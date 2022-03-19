@@ -1,0 +1,79 @@
+Musuroi Daniel-Nicusor
+Anul II
+Grupa: 313CBa
+
+                            Sistemul lui Biju
+    
+    Tema este scrisa intr-un singur fisier, unde se afla cate o functie 
+pentru fiecare task (si niste functii ajutatoare). Am alocat dinamic
+fiecare sir de caractere, iar in cazul unei alocari nereusite, se intoarce
+exit code-ul 5.
+
+    In functia main, se citeste cate o linie (comanda + argumente), pe rand,
+iar apoi, in functie de comanda data, se apeleaza una dintre functiile touch,
+mkdir, ls, rm, rmdir, cd, stop, tree, pwd, mv, fiecare cu parmetrii 
+corespunzatori.
+
+        touch:
+    Testeaza mai intai daca exista vreun director care sa aiba numele dat
+ca parametru, iar daca exista afiseaza mesajul corespunzator. In caz contrar,
+verifica daca exista vreun fisier in lista de fisiere din directorul curent.
+Daca nu exista, creeaza un fisier (folosind alloc_File) in folderul curent.
+Daca exista, va cauta in lista de fisiere un fisier care sa aiba numele dat
+ca parametru. Daca exista, va afisa un mesaj corespunzator, iar in cazul in 
+care nu exista, va pune la coada listei un fisier creat cu numele dat.
+
+        mkdir:
+    Face cam acelasi lucru ca touch, doar ca de aceasta data verifica mai
+intai daca exista un fisier cu numele dat, apoi verifica daca exista vreun
+director in directorul curent, apoi un director cu numele dat. Afiseaza un
+mesaj corespunzator in cazul in care exista deja un fisier/director cu
+numele dat sau creeaza un director si il pune la coada listei de directoare
+din folderul curent (sau la inceputul acesteia) in cazul in care nu exista.
+
+        ls:
+    Parcurge cele doua liste (de fisiere si de directoare) si afiseaza pe 
+cate un rand separat numele fiecarui director si numele fiecarui fisier.
+
+        rm:
+    Verifica mai intai daca lista de fisiere este goala, caz in care
+afiseaza un mesaj corespunzator. Apoi, parcurge lista de fisiere si cauta
+un fisier al carui nume este parametrul dat. In cazul in care gaseste un
+astfel de fisier, il sterge, in caz contrar, afiseaza un mesaj corespunzator.
+
+        rmdir:
+    Asemanator cu rm, doar ca in momentul stergerii unui director, se vor 
+sterge toate fisierele si directoarele din acesta, lucru realizat cu
+functia ajutatoare destroy_allfromDir.
+
+        cd:
+    Functia cd verifica daca numele dat ca parametru este ".." si, in caz
+afirmativ, actualizeaza folderul curent cu parintele lui (daca acesta exista).
+In caz contrar, se parcurge lista de directoare. Daca se gaseste un director
+cu numele dat, atunci se actualizeaza directorul curent, iar daca nu, atunci
+se afiseaza un mesaj corespunzator.
+
+        tree:
+    Functia tree este o functei recursiva, ce afiseaza primul director din
+lista de directoare, apoi tot ce se gaseste in acesta, urmanand sa afiseze al
+doilea director din lista si tot ce se gaseste in acesta si asa mai departe.
+
+        pwd:
+    Functia pwd foloseste o functie ajutatoare aux_pwd recursiva. Functia
+aux_pwd se intoarce la directorul home, retinand intr-o variabila len 
+lungimea sirului de caractere care trebuie intors. Apoi, pentru fiecare 
+director de la home si pana la directorul curent, se concateneaza la 
+sirul de caractere ce trebuie intors "/" si numele directorului.
+
+        stop:
+    Functia care elibereaza memoria folosind destroy_allfromDir.
+
+        mv:
+    Verifica daca exista un fisier cu numele vechi, apoi daca nu exista
+verifica daca un director cu numele vechi. Daca nu a fost gasit niciun
+fiser/director cu numele vechi, afiseaza un mesaj corespunzator. Apoi
+verifica daca exista deja un fisier/director cu numele nou si daca da, 
+afiseaza un mesaj corespunzator. In cazul in care a fost gasit un 
+fisier/director cu numele vechi si niciun fisier/director cu numele nou, 
+se va modifica numele si se va pune fisierul/directorul la coada listei
+corespunzatoare.
